@@ -55,7 +55,20 @@ pip install psycopg2-binary
    GRANT CONNECT ON DATABASE my_database TO my_user;
    ```
 
-4. Exit the PostgreSQL prompt:
+4. Grant necessary privileges on the `public` schema to avoid permission issues:
+
+   ```sql
+   -- Switch to the database
+   \c my_database
+
+   -- Grant privileges on the public schema
+   GRANT ALL ON SCHEMA public TO my_user;
+
+   -- Grant usage and create privileges
+   GRANT USAGE, CREATE ON SCHEMA public TO my_user;
+   ```
+
+5. Exit the PostgreSQL prompt:
 
    ```sql
    \q
@@ -90,4 +103,4 @@ python manage.py migrate
 
 ## Conclusion
 
-You have successfully set up PostgreSQL in your Django project, created a new database, created a new role, and connected that role to the database. If you encounter any issues, check the console output for error messages and ensure that your PostgreSQL service is running.
+You have successfully set up PostgreSQL in your Django project, created a new database, created a new role, granted the necessary privileges, and connected that role to the database. If you encounter any issues, check the console output for error messages and ensure that your PostgreSQL service is running.
