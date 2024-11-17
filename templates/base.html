@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
-        {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
     </head>
     <body>
         <div class="container">
@@ -12,12 +14,21 @@
                 <li class="nav-item">
                     <a class="nav-link link-light" href="/">HOME</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/members">MEMBERS</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link link-light" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link link-light" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-light" href="{% url 'account_signup' %}">Signup</a>
+                    </li>
+                {% endif %}
             </ul>
 
-            {% block content %} {% endblock %}
+            {% block content %}{% endblock %}
         </div>
     </body>
 </html>
