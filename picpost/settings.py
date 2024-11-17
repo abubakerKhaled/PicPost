@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     'users.apps.UsersConfig',
+    'home.apps.HomeConfig',
     'bootstrap5',
 ]
 
@@ -117,9 +118,9 @@ ACCOUNT_AUTHENTICATION_METHOD='email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup
-# LOGIN_REDIRECT_URL = '/'  # Redirect after login
-# ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup
+LOGIN_REDIRECT_URL = '/'  # Redirect after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
 
 # Password validation
