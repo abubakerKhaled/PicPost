@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "allauth",
     "allauth.account",
+    'users.apps.UsersConfig',
 ]
 
 
@@ -104,6 +105,20 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     
 ]
+
+# https://docs.allauth.org/en/dev/account/configuration.html
+# allauth settings
+AUTH_USER_MODEL = 'users.CustomUser'
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_AUTHENTICATION_METHOD='email'
+
+# Email Settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup
+LOGIN_REDIRECT_URL = '/'  # Redirect after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
 
 # Password validation
