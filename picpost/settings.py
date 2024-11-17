@@ -66,7 +66,7 @@ ROOT_URLCONF = "picpost.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -117,9 +117,9 @@ ACCOUNT_AUTHENTICATION_METHOD='email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup
-LOGIN_REDIRECT_URL = '/'  # Redirect after login
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+# ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup
+# LOGIN_REDIRECT_URL = '/'  # Redirect after login
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
 
 # Password validation

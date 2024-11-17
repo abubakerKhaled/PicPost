@@ -21,6 +21,3 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
 ]
-
-# Print all registered models (for debugging)
-print(admin.site._registry)
