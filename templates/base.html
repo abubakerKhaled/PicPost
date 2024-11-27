@@ -33,7 +33,7 @@
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav position-absolute start-50 translate-middle-x d-none d-lg-flex">
                         <li class="nav-item px-2">
-                            <a class="nav-link fw-medium {% if section == 'dashboard' %}active{% endif %}" href="{% url 'home:home' %}">My Dashboard</a>
+                            <a class="nav-link fw-medium {% if section == 'dashboard' %}active{% endif %}" href="{% url 'home:dashboard' %}">My Dashboard</a>
                         </li>
                         <li class="nav-item px-2">
                             <a class="nav-link fw-medium {% if section == 'images' %}active{% endif %}" href="#">Images</a>
@@ -46,7 +46,7 @@
                     <!-- Mobile menu items -->
                     <ul class="navbar-nav d-lg-none text-center my-3">
                         <li class="nav-item">
-                            <a class="nav-link fw-medium {% if section == 'dashboard' %}active{% endif %}" href="{% url 'home:home' %}">My Dashboard</a>
+                            <a class="nav-link fw-medium {% if section == 'dashboard' %}active{% endif %}" href="{% url 'home:dashboard' %}">My Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-medium {% if section == 'images' %}active{% endif %}" href="#">Images</a>
