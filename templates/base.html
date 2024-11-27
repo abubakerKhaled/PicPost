@@ -84,6 +84,11 @@
                                         Logout
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'account_change_password' %}">
+                                        Change Password
+                                    </a>
+                                </li>
                                 {% else %}
                                 <li>
                                     <a class="dropdown-item py-2" href="{% url 'account_login' %}">
