@@ -10,107 +10,101 @@
     </head>
     <body>
         <!-- Start Navbar Sections --> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3">
+            <div class="container">
+                <!-- Brand on the left with larger text -->
+                <a class="navbar-brand fs-4 fw-bold" href="/">PicPost</a>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3">
-        <div class="container">
-        <!-- Brand on the left with larger text -->
-        <a class="navbar-brand fs-4 fw-bold" href="/">PicPost</a>
-
-        <!-- Hamburger button for mobile -->
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            >
-        </button>
-            {% if user.is_authenticated %}
-            <span class="navbar-toggler-icon"></span>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <!-- Centered menu items using position-absolute and translate-middle -->
-            <ul class="navbar-nav position-absolute start-50 translate-middle-x d-none d-lg-flex">
-                <li class="nav-item px-2">
-                <a class="nav-link active fw-medium" aria-current="page" href="/">Dashboard</a>
-                </li>
-                <li class="nav-item px-2">
-                <a class="nav-link fw-medium" href="#">Images</a>
-                </li>
-                <li class="nav-item px-2">
-                <a class="nav-link fw-medium" href="#">People</a>
-                </li>
-            </ul>
-            {% endif %}
-
-            {% if user.is_authenticated %}
-            <!-- Mobile menu items (shown when collapsed) -->
-            <ul class="navbar-nav d-lg-none text-center my-3">
-                <li class="nav-item">
-                <a class="nav-link active fw-medium" aria-current="page" href="/">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link fw-medium" href="#">Images</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link fw-medium" href="#">People</a>
-                </li>
-            </ul>
-            {% endif %}
-
-            <!-- Dropdown on the right -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle fw-medium"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-bs-toggle="dropdown"
+                <!-- Hamburger button for mobile -->
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown"
                     aria-expanded="false"
+                    aria-label="Toggle navigation"
                 >
-                    {% if user.is_authenticated %}
-                        {{ user.username }}
-                    {% else %}
-                    Account
-                    {% endif %}
-                </a>
-                <ul
-                    class="dropdown-menu dropdown-menu-end shadow-sm"
-                    aria-labelledby="navbarDropdownMenuLink"
-                >
-                    {% if user.is_authenticated %}
-                    <li>
-                    <a class="dropdown-item py-2" href="{% url 'account_logout' %}">
-                        Logout
-                    </a>
-                    </li>
-                    {% else %}
-                    <li>
-                    <a class="dropdown-item py-2" href="{% url 'account_login' %}">
-                        Login
-                    </a>
-                    </li>
-                    <li>
-                    <a class="dropdown-item py-2" href="{% url 'account_signup' %}">
-                        Sign up
-                    </a>
-                    </li>
-                    {% endif %}
-                </ul>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </nav>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <!-- Centered menu items (only show if authenticated) -->
+                    {% if user.is_authenticated %}
+                    <ul class="navbar-nav position-absolute start-50 translate-middle-x d-none d-lg-flex">
+                        <li class="nav-item px-2">
+                            <a class="nav-link fw-medium {% if section == 'dashboard' %}active{% endif %}" href="{% url 'home:home' %}">My Dashboard</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a class="nav-link fw-medium {% if section == 'images' %}active{% endif %}" href="#">Images</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a class="nav-link fw-medium {% if section == 'people' %}active{% endif %}" href="#">People</a>
+                        </li>
+                    </ul>
+
+                    <!-- Mobile menu items -->
+                    <ul class="navbar-nav d-lg-none text-center my-3">
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium {% if section == 'dashboard' %}active{% endif %}" href="{% url 'home:home' %}">My Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium {% if section == 'images' %}active{% endif %}" href="#">Images</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium {% if section == 'people' %}active{% endif %}" href="#">People</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+
+                    <!-- Dropdown on the right -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle fw-medium"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                {% if user.is_authenticated %}
+                                    {{ user.username }}
+                                {% else %}
+                                    Account
+                                {% endif %}
+                            </a>
+                            <ul
+                                class="dropdown-menu dropdown-menu-end shadow-sm"
+                                aria-labelledby="navbarDropdownMenuLink"
+                            >
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'account_logout' %}">
+                                        Logout
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'account_login' %}">
+                                        Login
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'account_signup' %}">
+                                        Sign up
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <!-- End Navbar Sections -->
         
-        
         {% block content %}
-            
         {% endblock content %}
-            
     </body>
 </html>
