@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'bootstrap5',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 
