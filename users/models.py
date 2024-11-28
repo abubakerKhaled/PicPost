@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
         return avatar
     
     def __str__(self):
-        return f'Profile of {self.user.username}'
+        return f'Profile of {self.username}'
     class Meta:
         verbose_name = "Custom User"
         verbose_name_plural = "Custom Users"
