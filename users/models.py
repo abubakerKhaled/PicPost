@@ -14,6 +14,7 @@ class CustomUser(AbstractUser):
         except:
             avatar = static("images/avatar_default.svg")
         return avatar
+    
     def __str__(self):
         return f'Profile of {self.user.username}'
     class Meta:
