@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
         try:
             avatar = self.profile_picture.url
         except:
-            avatar = static("images/avatar_default.svg")
+            avatar = static("images/avatar_default.jpg")
         return avatar
     
     def __str__(self):
