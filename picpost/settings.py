@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "allauth.account",
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
+    'images.apps.ImagesConfig',
     'bootstrap5',
     'django_cleanup.apps.CleanupConfig',
 ]
