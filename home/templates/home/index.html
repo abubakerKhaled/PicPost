@@ -30,9 +30,19 @@
                             <div class="text-center">
                                 <a href="javascript:(function(){
                                     if (!window.bookmarklet) {
-                                        let bookmarklet_js = document.body.appendChild(document.createElement('script'));
-                                        bookmarklet_js.src = '//127.0.0.1:8000/static/js/bookmarklet.js?r=' + Math.floor(Math.random() * 9999999999999999);
-                                        window.bookmarklet = true;
+                                        // Wait for the document to be fully loaded
+                                        if (document.readyState === 'loading') {
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                let bookmarklet_js = document.body.appendChild(document.createElement('script'));
+                                                bookmarklet_js.src = 'http://127.0.0.1:8000/static/js/bookmarklet.js?r=' + Math.floor(Math.random() * 9999999999999999);
+                                                window.bookmarklet = true;
+                                            });
+                                        } else {
+                                            // If document is already loaded
+                                            let bookmarklet_js = document.body.appendChild(document.createElement('script'));
+                                            bookmarklet_js.src = 'http://127.0.0.1:8000/static/js/bookmarklet.js?r=' + Math.floor(Math.random() * 9999999999999999);
+                                            window.bookmarklet = true;
+                                        }
                                     } else {
                                         bookmarkletLaunch();
                                     }
