@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ image.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="mb-0">{{ image.title }}</h1>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="{{ image.image.url }}" class="img-fluid rounded mb-3 image-detail" alt="{{ image.title }}">
+                    </div>
+
+                    {% with total_likes=image.users_like.count %}
+                    <div class="image-info mb-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="badge bg-primary me-2">
+                                {{ total_likes }} like{{ total_likes|pluralize }}
+                            </span>
+                        </div>
+                        <p class="card-text">{{ image.description|linebreaks }}</p>
+                    </div>
+
+                    <div class="image-likes">
+                        <h5>Likes</h5>
+                        <div class="row">
+                            {% for user in image.users_like.all %}
+                                <div class="col-md-3 col-6 text-center mb-3">
+                                    {% if user.profile.photo %}
+                                        <img src="{{ user.profile.photo.url }}" class="img-thumbnail rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="img-thumbnail rounded-circle mb-2 bg-secondary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                            <span class="text-white">No Photo</span>
+                                        </div>
+                                    {% endif %}
+                                    <p class="mb-0">{{ user.first_name }}</p>
+                                </div>
+                            {% empty %}
+                                <div class="col-12">
+                                    <p class="text-muted text-center">Nobody likes this image yet.</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .image-detail {
+        max-height: 500px;
+        object-fit: cover;
+        width: 100%;
+    }
+</style>
+{% endblock %}
