@@ -9,3 +9,7 @@ db.sqlite3
 *.env
 
 .vscode
+
+cert.crt
+
+cert.key

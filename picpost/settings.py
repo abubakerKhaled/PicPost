@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,6 +62,14 @@ MIDDLEWARE = [
     # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
 ]
+
+INSTALLED_APPS += ['corsheaders']
+MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware']
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://172.0.0.1:8000",
+]
+
 
 ROOT_URLCONF = "picpost.urls"
 
@@ -155,7 +164,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"  # For production use only
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'  # This allows serving static files in development
+]
+
+mimetypes.add_type("application/javascript", ".js", True)
+mimetypes.add_type("text/css", ".css", True)
+
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
