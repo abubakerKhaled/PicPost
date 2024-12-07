@@ -3,4 +3,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'home/index.html')
+    context = {
+        'section': 'dashboard',
+    }
+    return render(request, 'home/index.html', context)
