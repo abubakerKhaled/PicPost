@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'images.apps.ImagesConfig',
     'bootstrap5',
     'django_cleanup.apps.CleanupConfig',
+    'django_extensions',
 ]
 
 
